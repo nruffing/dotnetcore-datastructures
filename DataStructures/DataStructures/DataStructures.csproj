@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="LinkedList\" />
+    <Folder Include="List\" />
+    <Folder Include="List\LinkedList\" />
   </ItemGroup>
 </Project>
