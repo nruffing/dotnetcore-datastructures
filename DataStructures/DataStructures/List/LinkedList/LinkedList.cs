@@ -130,6 +130,35 @@ namespace DataStructures.List.LinkedList
             return node.Value;
         }
 
+        public void Insert(T value, int index)
+        {
+            if (index < 0 || index > Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
+            if (index == 0)
+            {
+                AddFirst(value);
+            }
+            else if (index == Count)
+            {
+                AddLast(value);
+            }
+            else
+            {
+                ILinkedListNode<T> newNode = new LinkedListNode<T>(value);
+                ILinkedListNode<T> currentNode = GetNode(index);
+
+                currentNode.Next.Previous = newNode;
+                newNode.Next = currentNode.Next;
+                currentNode.Next = newNode;
+                newNode.Previous = currentNode;
+
+                Count++;
+            }
+        }
+
         private T Get(int index)
         {
             VerifyIndexIsInBounds(index);

@@ -7,5 +7,7 @@
         void Add(T value);
 
         T Remove(int index);
+
+        void Insert(T value, int index);
     }
 }

@@ -68,6 +68,29 @@ namespace DataStructures.List
             return result;
         }
 
+        public void Insert(T value, int index)
+        {
+            if (index < 0 || index > Count)
+            {
+                throw new ArgumentOutOfRangeException(nameof(index));
+            }
+
+            EnsureArrayHasRoom();
+
+            if (Count > 0 || index != Count)
+            {
+                // Move all elements after the insertion point one index
+                for (int i = Count - 1; i >= index; i--)
+                {
+                    _array[i + 1] = _array[i];
+                }
+            }
+
+            _array[index] = value;
+
+            Count++;
+        }
+
         private void EnsureArrayHasRoom()
         {
             // This method assumes that one element is going to be added to the list.
