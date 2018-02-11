@@ -70,6 +70,11 @@ namespace DataStructures.List.LinkedList
             Count++;
         }
 
+        public void Add(T value)
+        {
+            AddLast(value);
+        }
+
         public void Remove(ILinkedListNode<T> node)
         {
             if (node == null)
@@ -116,9 +121,13 @@ namespace DataStructures.List.LinkedList
             return result;
         }
 
-        public void Add(T value)
+        public T Remove(int index)
         {
-            AddLast(value);
+            VerifyIndexIsInBounds(index);
+
+            ILinkedListNode<T> node = GetNode(index);
+            Remove(node);
+            return node.Value;
         }
 
         private T Get(int index)

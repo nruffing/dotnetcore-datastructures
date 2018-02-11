@@ -46,6 +46,27 @@ namespace DataStructures.List
             _array[Count++] = value;
         }
 
+        public T Remove(int index)
+        {
+            VerifyIndexIsInBounds(index);
+
+            T result = _array[index];
+
+            // If we have more than 1 element or we are not removing the last element
+            // we need to shift all the elements after the one being removed.
+            if (Count > 1 && index != Count - 1)
+            {
+                for (int i = index + 1; i < Count; i++)
+                {
+                    _array[i - 1] = _array[i];
+                }
+            }
+
+            // Otherwise we just need to decrement the count
+            Count--;
+
+            return result;
+        }
 
         private void EnsureArrayHasRoom()
         {

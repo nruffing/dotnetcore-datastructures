@@ -5,5 +5,7 @@
         T this[int index] { get; set; }
 
         void Add(T value);
+
+        T Remove(int index);
     }
 }
