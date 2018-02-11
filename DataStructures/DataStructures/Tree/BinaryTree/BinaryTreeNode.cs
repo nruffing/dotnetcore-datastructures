@@ -29,5 +29,10 @@ namespace DataStructures.Tree.BinaryTree
                 return children;
             }
         }
+
+        public virtual void AddChild(T value)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

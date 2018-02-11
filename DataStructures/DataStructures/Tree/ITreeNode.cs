@@ -7,5 +7,7 @@ namespace DataStructures.Tree
         T Value { get; set; }
 
         IList<ITreeNode<T>> Children { get; }
+
+        void AddChild(T value);
     }
 }
