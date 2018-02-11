@@ -176,5 +176,53 @@ namespace DataStructures.Tests
             list.Remove(1);
             Assert.Equal(1, list.Count);
         }
+
+        [Fact]
+        public void InsertThrowsWhenOutOfRangeTest()
+        {
+            ILinkedList<int> list = new LinkedList<int>();
+            list.Add(1);
+
+            Assert.Throws<ArgumentOutOfRangeException>(() => list.Insert(1, -1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => list.Insert(1, 2));
+        }
+
+        [Fact]
+        public void InsertAtFrontTest()
+        {
+            ILinkedList<int> list = new LinkedList<int>();
+
+            list.Insert(1, 0);
+
+            Assert.Equal(1, list.Count);
+            Assert.Equal(1, list[0]);
+        }
+
+        [Fact]
+        public void InsertAtEndTest()
+        {
+            ILinkedList<int> list = new LinkedList<int>();
+            list.Add(1);
+
+            list.Insert(2, 1);
+
+            Assert.Equal(2, list.Count);
+            Assert.Equal(2, list[1]);
+        }
+
+        [Fact]
+        public void InsertTest()
+        {
+            ILinkedList<int> list = new LinkedList<int>();
+            list.Add(1);
+            list.Add(3);
+
+            list.Insert(2, 1);
+
+            Assert.Equal(3, list.Count);
+            Assert.Equal(1, list[0]);
+            Assert.Equal(2, list[1]);
+            Assert.Equal(3, list[2]);
+        }
     }
 }

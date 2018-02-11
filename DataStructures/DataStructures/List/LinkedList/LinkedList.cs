@@ -150,10 +150,10 @@ namespace DataStructures.List.LinkedList
                 ILinkedListNode<T> newNode = new LinkedListNode<T>(value);
                 ILinkedListNode<T> currentNode = GetNode(index);
 
-                currentNode.Next.Previous = newNode;
-                newNode.Next = currentNode.Next;
-                currentNode.Next = newNode;
+                currentNode.Previous.Next = newNode;
                 newNode.Previous = currentNode;
+                currentNode.Previous = newNode;
+                newNode.Next = currentNode;
 
                 Count++;
             }
