@@ -65,5 +65,47 @@ namespace DataStructures.Tests
             Assert.Equal(2, list[1]);
             Assert.Equal(3, list[2]);
         }
+
+        [Fact]
+        public void RemoveFromIndexOutOfBoundsTest()
+        {
+            IList<int> list = new List<int>();
+
+            Assert.Throws<IndexOutOfRangeException>(() => list.Remove(-1));
+
+            list.Add(1);
+
+            Assert.Throws<IndexOutOfRangeException>(() => list.Remove(1));
+        }
+
+        [Fact]
+        public void RemoveFromIndexTest()
+        {
+            IList<int> list = new List<int>();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+
+            Assert.Equal(2, list.Remove(1));
+            Assert.Equal(2, list.Count);
+            Assert.Equal(1, list[0]);
+            Assert.Equal(3, list[1]);
+        }
+
+        [Fact]
+        public void RemoveLastElementFromIndexTest()
+        {
+            IList<int> list = new List<int>();
+            list.Add(1);
+
+            list.Remove(0);
+            Assert.Equal(0, list.Count);
+
+            list.Add(1);
+            list.Add(2);
+
+            list.Remove(1);
+            Assert.Equal(1, list.Count);
+        }
     }
 }

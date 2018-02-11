@@ -9,7 +9,7 @@ namespace DataStructures.Tests
         [Fact]
         public void ConstructionTest()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
             Assert.Null(list.First);
             Assert.Null(list.Last);
             Assert.Equal(0, list.Count);
@@ -18,7 +18,7 @@ namespace DataStructures.Tests
         [Fact]
         public void AddFirstNodeFromFrontTest()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
             list.AddFirst(2);
             Assert.NotNull(list.First);
             Assert.Same(list.First, list.Last);
@@ -29,7 +29,7 @@ namespace DataStructures.Tests
         [Fact]
         public void AddFirstNodeFromBackTest()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
             list.AddLast(2);
             Assert.NotNull(list.First);
             Assert.Same(list.First, list.Last);
@@ -40,7 +40,7 @@ namespace DataStructures.Tests
         [Fact]
         public void AddFirstTest()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
             list.AddLast(2);
             list.AddFirst(1);
 
@@ -58,7 +58,7 @@ namespace DataStructures.Tests
         [Fact]
         public void AddLastTest()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
             list.AddFirst(1);
             list.AddLast(2);
 
@@ -76,7 +76,7 @@ namespace DataStructures.Tests
         [Fact]
         public void RemoveTest()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
             list.AddLast(1);
             list.AddLast(2);
             list.AddLast(3);
@@ -94,7 +94,7 @@ namespace DataStructures.Tests
         [Fact]
         public void GetIndexerTest()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
             list.AddLast(1);
             list.AddLast(2);
             list.AddLast(3);
@@ -105,7 +105,7 @@ namespace DataStructures.Tests
         [Fact]
         public void SetIndexerTest()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
             list.AddLast(1);
             list.AddLast(2);
             list.AddLast(3);
@@ -117,7 +117,7 @@ namespace DataStructures.Tests
         [Fact]
         public void IndexOutOfRangeTest()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
 
             Assert.Throws<IndexOutOfRangeException>(() => list[0]);
 
@@ -130,9 +130,51 @@ namespace DataStructures.Tests
         [Fact]
         public void RemoveNullThrows()
         {
-            LinkedList<int> list = new LinkedList<int>();
+            ILinkedList<int> list = new LinkedList<int>();
 
             Assert.Throws<ArgumentException>(() => list.Remove(null));
+        }
+
+        [Fact]
+        public void RemoveFromIndexOutOfBoundsTest()
+        {
+            ILinkedList<int> list = new LinkedList<int>();
+
+            Assert.Throws<IndexOutOfRangeException>(() => list.Remove(-1));
+
+            list.Add(1);
+
+            Assert.Throws<IndexOutOfRangeException>(() => list.Remove(1));
+        }
+
+        [Fact]
+        public void RemoveFromIndexTest()
+        {
+            ILinkedList<int> list = new LinkedList<int>();
+            list.Add(1);
+            list.Add(2);
+            list.Add(3);
+
+            Assert.Equal(2, list.Remove(1));
+            Assert.Equal(2, list.Count);
+            Assert.Equal(1, list[0]);
+            Assert.Equal(3, list[1]);
+        }
+
+        [Fact]
+        public void RemoveLastElementFromIndexTest()
+        {
+            ILinkedList<int> list = new LinkedList<int>();
+            list.Add(1);
+
+            list.Remove(0);
+            Assert.Equal(0, list.Count);
+
+            list.Add(1);
+            list.Add(2);
+
+            list.Remove(1);
+            Assert.Equal(1, list.Count);
         }
     }
 }
