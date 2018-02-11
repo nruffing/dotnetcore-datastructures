@@ -116,6 +116,11 @@ namespace DataStructures.List.LinkedList
             return result;
         }
 
+        public void Add(T value)
+        {
+            AddLast(value);
+        }
+
         private T Get(int index)
         {
             VerifyIndexIsInBounds(index);
