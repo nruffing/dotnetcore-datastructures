@@ -25,6 +25,8 @@ namespace DataStructures.List.LinkedList
 
         public void AddFirst(T value)
         {
+            VerifyCollectionHasRoom();
+
             ILinkedListNode<T> node = new LinkedListNode<T>(value);
 
             // If first is null than this linked list is empty and we should set First and Last to the new node.
@@ -47,6 +49,8 @@ namespace DataStructures.List.LinkedList
 
         public void AddLast(T value)
         {
+            VerifyCollectionHasRoom();
+
             ILinkedListNode<T> node = new LinkedListNode<T>(value);
 
             // If first is null than this linked list is empty and we should set First and Last to the new node.
@@ -145,6 +149,14 @@ namespace DataStructures.List.LinkedList
             if (index < 0 || index >= Count)
             {
                 throw new IndexOutOfRangeException();
+            }
+        }
+
+        private void VerifyCollectionHasRoom()
+        {
+            if (Count >= Int32.MaxValue)
+            {
+                throw new CollectionFullException();
             }
         }
     }
