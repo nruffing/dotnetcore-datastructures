@@ -17,7 +17,7 @@ namespace DataStructures.List.LinkedList
             }
         }
 
-        public long Count { get; private set; }
+        public int Count { get; private set; }
 
         public ILinkedListNode<T> First { get; private set; }
 

@@ -12,7 +12,7 @@ namespace DataStructures.Stack
             _list = new LinkedList<T>();
         }
 
-        public long Count { get; private set; }
+        public int Count { get; private set; }
 
         public void Push(T value)
         {

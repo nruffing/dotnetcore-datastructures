@@ -11,7 +11,8 @@ namespace DataStructures.Queue
         {
             _list = new LinkedList<T>();
         }
-        public long Count { get; private set; }
+
+        public int Count { get; private set; }
 
         public void Enqueue(T value)
         {

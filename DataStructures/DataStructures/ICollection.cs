@@ -2,6 +2,6 @@
 {
     public interface ICollection
     {
-        long Count { get; }
+        int Count { get; }
     }
 }
