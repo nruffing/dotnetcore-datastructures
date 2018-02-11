@@ -10,5 +10,8 @@
     <Folder Include="Stack\" />
     <Folder Include="Exceptions\" />
     <Folder Include="Queue\" />
+    <Folder Include="Tree\" />
+    <Folder Include="Tree\BinaryTree\" />
+    <Folder Include="Tree\BinaryTree\BinarySearchTree\" />
   </ItemGroup>
 </Project>
