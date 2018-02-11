@@ -7,5 +7,7 @@
   <ItemGroup>
     <Folder Include="List\" />
     <Folder Include="List\LinkedList\" />
+    <Folder Include="Stack\" />
+    <Folder Include="Exceptions\" />
   </ItemGroup>
 </Project>

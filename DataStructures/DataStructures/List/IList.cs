@@ -1,9 +1,7 @@
 ﻿namespace DataStructures.List
 {
-    public interface IList<T>
+    public interface IList<T> : ICollection
     {
         T this[int index] { get; set; }
-
-        long Count { get; }
     }
 }

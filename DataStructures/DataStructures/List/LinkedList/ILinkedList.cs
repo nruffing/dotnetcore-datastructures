@@ -11,5 +11,9 @@
         void AddLast(T value);
 
         void Remove(ILinkedListNode<T> node);
+
+        T RemoveLast();
+
+        T RemoveFirst();
     }
 }

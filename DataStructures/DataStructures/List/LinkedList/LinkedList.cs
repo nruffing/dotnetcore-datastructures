@@ -1,4 +1,5 @@
 ﻿using System;
+using DataStructures.Exceptions;
 
 namespace DataStructures.List.LinkedList
 {
@@ -67,6 +68,11 @@ namespace DataStructures.List.LinkedList
 
         public void Remove(ILinkedListNode<T> node)
         {
+            if (node == null)
+            {
+                throw new ArgumentException("Cannot remove a null node", nameof(node));
+            }
+
             if (node.Previous != null)
             {
                 node.Previous.Next = node.Next;
@@ -78,6 +84,30 @@ namespace DataStructures.List.LinkedList
             }
 
             Count--;
+        }
+
+        public T RemoveFirst()
+        {
+            if (First == null)
+            {
+                throw new CollectionEmptyException();
+            }
+
+            T result = First.Value;
+            Remove(First);
+            return result;
+        }
+
+        public T RemoveLast()
+        {
+            if (Last == null)
+            {
+                throw new CollectionEmptyException();
+            }
+
+            T result = Last.Value;
+            Remove(Last);
+            return result;
         }
 
         private T Get(int index)
