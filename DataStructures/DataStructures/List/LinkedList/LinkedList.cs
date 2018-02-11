@@ -76,6 +76,8 @@ namespace DataStructures.List.LinkedList
             {
                 node.Next.Previous = node.Previous;
             }
+
+            Count--;
         }
 
         private T Get(int index)
