@@ -43,9 +43,7 @@ namespace DataStructures.List
         {
             EnsureArrayHasRoom();
 
-            _array[Count] = value;
-
-            Count++;
+            _array[Count++] = value;
         }
 
 
