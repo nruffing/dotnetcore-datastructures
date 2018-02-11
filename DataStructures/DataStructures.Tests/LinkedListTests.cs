@@ -126,5 +126,13 @@ namespace DataStructures.Tests
             Assert.Throws<IndexOutOfRangeException>(() => list[1]);
             Assert.Throws<IndexOutOfRangeException>(() => list[-1]);
         }
+
+        [Fact]
+        public void RemoveNullThrows()
+        {
+            LinkedList<int> list = new LinkedList<int>();
+
+            Assert.Throws<ArgumentException>(() => list.Remove(null));
+        }
     }
 }

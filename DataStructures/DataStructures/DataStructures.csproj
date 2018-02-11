@@ -9,5 +9,6 @@
     <Folder Include="List\LinkedList\" />
     <Folder Include="Stack\" />
     <Folder Include="Exceptions\" />
+    <Folder Include="Queue\" />
   </ItemGroup>
 </Project>

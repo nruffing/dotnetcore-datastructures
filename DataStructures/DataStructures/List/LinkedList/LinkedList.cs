@@ -73,6 +73,8 @@ namespace DataStructures.List.LinkedList
                 throw new ArgumentException("Cannot remove a null node", nameof(node));
             }
 
+            // TODO: Should we verify that this node is actually part of this list?
+
             if (node.Previous != null)
             {
                 node.Previous.Next = node.Next;

@@ -1,27 +1,26 @@
 ﻿using DataStructures.List.LinkedList;
 using DataStructures.Exceptions;
 
-namespace DataStructures.Stack
+namespace DataStructures.Queue
 {
-    public class Stack<T> : IStack<T>
+    public class Queue<T> : IQueue<T>
     {
         private ILinkedList<T> _list;
 
-        public Stack()
+        public Queue()
         {
             _list = new LinkedList<T>();
         }
-
         public long Count { get; private set; }
 
-        public void Push(T value)
+        public void Enqueue(T value)
         {
-            _list.AddLast(value);
+            _list.AddFirst(value);
 
             Count++;
         }
 
-        public T Pop()
+        public T Dequeue()
         {
             if (_list.Last == null)
             {
@@ -39,7 +38,7 @@ namespace DataStructures.Stack
             {
                 throw new CollectionEmptyException();
             }
-                
+
             return _list.Last.Value;
         }
     }
