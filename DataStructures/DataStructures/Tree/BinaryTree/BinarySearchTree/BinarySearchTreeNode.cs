@@ -35,7 +35,7 @@ namespace DataStructures.Tree.BinaryTree.BinarySearchTree
                     this.Left.Parent = this;
                     // this.Left.IsBlack = false; // New leaf nodes should always be red
 
-                    MitigateRedViolations(newNode);
+                    Balance(newNode);
                 }
                 else
                 {
@@ -51,7 +51,7 @@ namespace DataStructures.Tree.BinaryTree.BinarySearchTree
                     this.Right.Parent = this;
                     // this.Right.IsBlack = false; // New leaf nodes should always be red
 
-                    MitigateRedViolations(newNode);
+                    Balance(newNode);
                 }
                 else
                 {
@@ -60,7 +60,7 @@ namespace DataStructures.Tree.BinaryTree.BinarySearchTree
             }
         }
 
-        private static void MitigateRedViolations(IBinarySearchTreeNode<T> newNode)
+        private static void Balance(IBinarySearchTreeNode<T> newNode)
         {
             IBinarySearchTreeNode<T> parent = newNode.Parent;
             if (parent != null)
@@ -78,10 +78,10 @@ namespace DataStructures.Tree.BinaryTree.BinarySearchTree
                         parent.IsBlack = true;
                         uncle.IsBlack = true;
 
-                        IBinarySearchTreeNode<T> grandparent = parent.Parent; // Since we able to get the uncle we know that the grandparent exists
+                        IBinarySearchTreeNode<T> grandparent = parent.Parent; // Since we are able to get the uncle we know that the grandparent exists
                         grandparent.IsBlack = false;
 
-                        MitigateRedViolations(grandparent);
+                        Balance(grandparent);
                     }
                 }
                 // else the parent node of the new node is black and the tree is already balanced
