@@ -1,6 +1,6 @@
 ﻿namespace DataStructures.Tree.BinaryTree.BinarySearchTree
 {
-    public class BinarySearchTree<T> : IBinarySearchTree<T>
+    public class BinarySearchTree<T> : ITree<T>
     {
         private IBinaryTreeNode<T> _root;
 
@@ -18,7 +18,7 @@
             }
             else
             {
-
+                _root.AddChild(value);
             }
         }
     }

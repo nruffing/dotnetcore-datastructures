@@ -14,4 +14,7 @@
     <Folder Include="Tree\BinaryTree\" />
     <Folder Include="Tree\BinaryTree\BinarySearchTree\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Tree\BinaryTree\BinarySearchTree\IBinarySearchTree.cs" />
+  </ItemGroup>
 </Project>
