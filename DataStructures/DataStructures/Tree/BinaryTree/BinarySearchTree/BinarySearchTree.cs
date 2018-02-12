@@ -1,8 +1,14 @@
-﻿namespace DataStructures.Tree.BinaryTree.BinarySearchTree
+﻿using System;
+using DataStructures.Exceptions;
+
+namespace DataStructures.Tree.BinaryTree.BinarySearchTree
 {
-    public class BinarySearchTree<T> : ITree<T>
+    /// <summary>
+    /// Implementation of a self-balancing red-black binary search tree. 
+    /// </summary>
+    public class BinarySearchTree<T> : ITree<T> where T : IComparable<T>
     {
-        private IBinaryTreeNode<T> _root;
+        private IBinarySearchTreeNode<T> _root;
 
         public ITreeNode<T> Root => _root;
 
@@ -10,16 +16,22 @@
 
         public void Add(T value)
         {
-            IBinaryTreeNode<T> node = new BinaryTreeNode<T>(value);
+            if (Count == Int32.MaxValue)
+            {
+                throw new CollectionFullException();
+            }
 
             if (_root == null)
             {
-                _root = node;
+                _root = new BinarySearchTreeNode<T>(value);
+                _root.IsBlack = true; // ensure root node is still black
             }
             else
             {
                 _root.AddChild(value);
             }
+
+            Count++;
         }
     }
 }

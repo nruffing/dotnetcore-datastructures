@@ -19,16 +19,9 @@ namespace DataStructures.Tree.BinaryTree
 
         public IBinaryTreeNode<T> Right { get; set; }
 
-        public IList<ITreeNode<T>> Children
-        {
-            get
-            {
-                IList<ITreeNode<T>> children = new List<ITreeNode<T>>(2);
-                children.Add(Left);
-                children.Add(Right);
-                return children;
-            }
-        }
+        public IBinaryTreeNode<T> Parent { get; set; }
+
+        public IList<ITreeNode<T>> Children => throw new System.NotImplementedException();
 
         public virtual void AddChild(T value)
         {
