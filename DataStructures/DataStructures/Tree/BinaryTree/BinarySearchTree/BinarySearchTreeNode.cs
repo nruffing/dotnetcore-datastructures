@@ -68,20 +68,14 @@ namespace DataStructures.Tree.BinaryTree.BinarySearchTree
                 if (!parent.IsBlack) // We have a red violation
                 {
                     IBinarySearchTreeNode<T> uncle = GetSibling(parent);
+                    IBinarySearchTreeNode<T> grandparent = parent.Parent; // Since we know that the parent is red and that the tree was previously balances the grandparent must exist
                     if (uncle == null || uncle.IsBlack)
                     {
-                        // the uncle is black
-                        // TODO
+                        HandleBlackUncle(newNode, parent, uncle, grandparent);
                     }
-                    else // the uncle is red
+                    else
                     {
-                        parent.IsBlack = true;
-                        uncle.IsBlack = true;
-
-                        IBinarySearchTreeNode<T> grandparent = parent.Parent; // Since we are able to get the uncle we know that the grandparent exists
-                        grandparent.IsBlack = false;
-
-                        Balance(grandparent);
+                        HandleRedUncle(parent, uncle, grandparent);
                     }
                 }
                 // else the parent node of the new node is black and the tree is already balanced
@@ -93,13 +87,50 @@ namespace DataStructures.Tree.BinaryTree.BinarySearchTree
             }
         }
 
+        private static void HandleBlackUncle(IBinarySearchTreeNode<T> newNode, IBinarySearchTreeNode<T> parent, IBinarySearchTreeNode<T> uncle, IBinarySearchTreeNode<T> grandparent)
+        {
+            if (IsLeft(newNode))
+            {
+                if (IsLeft(parent))
+                {
+                    // Case A: the new node and its parent are left children
+                    IBinarySearchTreeNode<T> tmp = parent.Right;
+                    parent.Parent = grandparent.Parent;
+                    parent.Right = grandparent;
+                    grandparent.Parent = parent;
+                    grandparent.Left = tmp;
+                    grandparent.Left.Parent = grandparent;
+
+                    parent.IsBlack = true;
+                    grandparent.IsBlack = false;
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+
+            }
+        }
+
+        private static void HandleRedUncle(IBinarySearchTreeNode<T> parent, IBinarySearchTreeNode<T> uncle, IBinarySearchTreeNode<T> grandparent)
+        {
+            parent.IsBlack = true;
+            uncle.IsBlack = true;
+            grandparent.IsBlack = false;
+
+            Balance(grandparent);
+        }
+
         private static IBinarySearchTreeNode<T> GetSibling(IBinarySearchTreeNode<T> node)
         {
             IBinarySearchTreeNode<T> sibling = null;
 
             if (node.Parent != null)
             {
-                if (node.Parent.Left == node)
+                if (IsLeft(node))
                 {
                     sibling = node.Parent.Right;
                 }
@@ -110,6 +141,11 @@ namespace DataStructures.Tree.BinaryTree.BinarySearchTree
             }
 
             return sibling;
+        }
+
+        private static bool IsLeft(IBinarySearchTreeNode<T> node)
+        {
+            return node.Parent != null && node.Parent.Left == node;
         }
     }
 }

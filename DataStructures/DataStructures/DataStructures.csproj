@@ -16,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Tree\BinaryTree\BinarySearchTree\IBinarySearchTree.cs" />
+    <Compile Remove="Tree\BinaryTree\BinarySearchTree\ExtensionMethods.cs" />
   </ItemGroup>
 </Project>

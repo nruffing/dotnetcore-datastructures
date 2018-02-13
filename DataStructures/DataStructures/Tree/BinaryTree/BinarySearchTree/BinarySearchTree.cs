@@ -29,6 +29,12 @@ namespace DataStructures.Tree.BinaryTree.BinarySearchTree
             else
             {
                 _root.AddChild(value);
+
+                // We need to make sure that _root is still the root
+                while (_root.Parent != null)
+                {
+                    _root = _root.Parent;
+                }
             }
 
             Count++;
